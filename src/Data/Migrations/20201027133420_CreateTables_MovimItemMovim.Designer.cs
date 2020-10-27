@@ -4,14 +4,16 @@ using Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Data.Migrations
 {
     [DbContext(typeof(ControleCargaContext))]
-    partial class ControleCargaContextModelSnapshot : ModelSnapshot
+    [Migration("20201027133420_CreateTables_MovimItemMovim")]
+    partial class CreateTables_MovimItemMovim
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -136,7 +138,7 @@ namespace Data.Migrations
 
                     b.HasIndex("ClienteProdutoId");
 
-                    b.ToTable("Item_Movimento");
+                    b.ToTable("ItemMovimento");
                 });
 
             modelBuilder.Entity("Business.Models.Movimento", b =>

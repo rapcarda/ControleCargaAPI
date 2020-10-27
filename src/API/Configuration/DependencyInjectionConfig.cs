@@ -25,6 +25,8 @@ namespace API.Configuration
             services.AddScoped<IColetorService, ColetorService>();
             services.AddScoped<IFrotaRepository, FrotaRepository>();
             services.AddScoped<IFrotaService, FrotaService>();
+            services.AddScoped<IMovimentoRepository, MovimentoRepository>();
+            services.AddScoped<IMovimentoService, MovimentoService>();
 
             return services;
         }
