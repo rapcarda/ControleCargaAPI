@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "l44Bl9LlpZWfjm9z2MPNxF8WfUnvEBPPTZS0hXYXsa+imw4x5CGRgBf1e/xwjwsk/KaXB3OYMtGjeYirKFsPkQ==",
+  "success": true,
+  "projectFilePath": "C:\\Particular\\Projetos\\ControleCargas\\API\\ControleCarga\\src\\Business\\Business.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\rapca\\.nuget\\packages\\fluentvalidation\\9.2.2\\fluentvalidation.9.2.2.nupkg.sha512"
+  ],
+  "logs": []
+}
