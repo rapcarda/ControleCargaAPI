@@ -13,15 +13,18 @@ namespace Business.Services
         private readonly IClienteProdutoRepository _clienteProdutoRepository;
         private readonly IClienteRepository _clienteRepository;
         private readonly IProdutoRepository _produtoRepository;
+        private readonly IMovimentoRepository _movimentoRepository;
 
         public ClienteProdutoService(IClienteProdutoRepository clienteProdutoRepository,
                                      IClienteRepository clienteRepository,
                                      IProdutoRepository produtoRepository,
+                                     IMovimentoRepository movimentoRepository,
                                      INotificator notificator): base(notificator)
         {
             _clienteProdutoRepository = clienteProdutoRepository;
             _clienteRepository = clienteRepository;
             _produtoRepository = produtoRepository;
+            _movimentoRepository = movimentoRepository;
         }
 
         #region [ActionMethods]
@@ -45,7 +48,18 @@ namespace Business.Services
         {
             var rel = await _clienteProdutoRepository.SearchId(id);
 
-            await _clienteProdutoRepository.Delete(rel);
+            if (rel != null)
+            {
+                if (_movimentoRepository.HasMovimByCliProd(id))
+                {
+                    Notify("Existem movimentações com este cliente e produto. Exclusão não permitida.");
+                    return;
+                }
+
+                await _clienteProdutoRepository.Delete(rel);
+            }
+
+            
         }
         #endregion
 

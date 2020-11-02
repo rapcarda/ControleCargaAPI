@@ -2,12 +2,14 @@
 using AutoMapper;
 using Business.Interfaces.Service;
 using Business.Interfaces.Shared;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     public class MovimentosController : BaseController
     {

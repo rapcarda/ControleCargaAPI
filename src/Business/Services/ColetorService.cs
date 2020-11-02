@@ -2,6 +2,7 @@
 using Business.Interfaces.Service;
 using Business.Interfaces.Shared;
 using Business.Models;
+using Business.Models.Enums;
 using Business.Validations;
 using System;
 using System.Collections.Generic;
@@ -12,17 +13,21 @@ namespace Business.Services
     public class ColetorService: BaseService<Coletor>, IColetorService
     {
         private readonly IColetorRepository _coletorRepository;
+        private readonly IMovimentoRepository _movimentoRepository;
 
         public ColetorService(IColetorRepository coletorRepository,
+                              IMovimentoRepository movimentoRepository,
                               INotificator notificator): base(notificator)
         {
             _coletorRepository = coletorRepository;
+            _movimentoRepository = movimentoRepository;
         }
 
         #region [ActionMethods]
         public async Task<long> Create(Coletor entity)
         {
             entity.Imei = CreateIMEIValue(entity.Numero);
+            entity.UtilizaCC = YesNo.Yes;
             if (!IsValid(entity))
                 return -1;
 
@@ -42,6 +47,7 @@ namespace Business.Services
             entity.Imei = coletor.Imei;
             entity.LastFichaCC = coletor.LastFichaCC;
             entity.LastSincCC = coletor.LastSincCC;
+            entity.UtilizaCC = coletor.UtilizaCC;
 
             if (!IsValid(entity))
                 return;
@@ -55,6 +61,12 @@ namespace Business.Services
 
             if (coletor != null)
             {
+                if (_movimentoRepository.HasMovimByColetor(id))
+                {
+                    Notify("Existem movimentos com este coletor. Exclusão não permitida.");
+                    return;
+                }
+
                 await _coletorRepository.Delete(coletor);
             }
 

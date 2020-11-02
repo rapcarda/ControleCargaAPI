@@ -11,11 +11,14 @@ namespace Business.Services
     public class FrotaService: BaseService<Frota>, IFrotaService
     {
         private readonly IFrotaRepository _frotaRepository;
+        private readonly IMovimentoRepository _movimentoRepository;
 
         public FrotaService(IFrotaRepository frotaRepository,
+                            IMovimentoRepository movimentoRepository,
                             INotificator notificator): base(notificator)
         {
             _frotaRepository = frotaRepository;
+            _movimentoRepository = movimentoRepository;
         }
 
         #region [ActionMethods]
@@ -41,6 +44,12 @@ namespace Business.Services
             
             if (frota != null)
             {
+                if (_movimentoRepository.HasMovimByFrota(id))
+                {
+                    Notify("Existem movimentos com esta frota. Exclusão não permitida");
+                    return;
+                }
+
                 await _frotaRepository.Delete(frota);
             }
         }

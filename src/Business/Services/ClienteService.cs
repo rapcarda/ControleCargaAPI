@@ -4,6 +4,7 @@ using Business.Interfaces.Shared;
 using Business.Models;
 using Business.Validations;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Business.Services
@@ -12,13 +13,16 @@ namespace Business.Services
     {
         private readonly IClienteRepository _clienteRepository;
         private readonly IClienteProdutoRepository _clienteProdRepository;
+        private readonly IMovimentoRepository _movimentoRepository;
 
         public ClienteService(IClienteRepository clienteRepository,
                               IClienteProdutoRepository clienteProdRepository,
+                              IMovimentoRepository movimentoRepository,
                               INotificator notificator): base(notificator)
         {
             _clienteRepository = clienteRepository;
             _clienteProdRepository = clienteProdRepository;
+            _movimentoRepository = movimentoRepository;
         }
 
         #region [ActionMethods]
@@ -46,9 +50,15 @@ namespace Business.Services
             {
                 var rel = await _clienteProdRepository.GetByCilent(id);
 
-                if (rel != null)
+                if (rel.Any())
                 {
                     Notify("Existem relacionamentos com este cliente. Exclusão não permitida.");
+                    return;
+                }
+
+                if (_movimentoRepository.HasMovimByCliente(id))
+                {
+                    Notify("Existem movimentos com este cliente. Exclusão não permitida");
                     return;
                 }
 

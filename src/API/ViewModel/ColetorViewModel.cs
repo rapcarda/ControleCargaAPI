@@ -17,9 +17,5 @@ namespace API.ViewModel
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         [DisplayName("Status")]
         public Status Status { get; set; }
-
-        [Required(ErrorMessage = "O campo {0} é obrigatório")]
-        [DisplayName("Utiliza CC")]
-        public YesNo UtilizaCC { get; set; }
     }
 }

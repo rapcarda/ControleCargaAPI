@@ -1,4 +1,5 @@
 ﻿using API.ViewModel;
+using API.ViewModel.Util;
 using AutoMapper;
 using Business.Interfaces.Service;
 using Business.Interfaces.Shared;
@@ -6,11 +7,12 @@ using Business.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     public class ClientesController : BaseController
     {
@@ -64,6 +66,13 @@ namespace API.Controllers
 
             await _clienteService.Delete(id);
             return CustomResponse();
+        }
+
+        [HttpGet("GetClienteCombo")]
+        public async Task<IEnumerable<ResponseComboViewModel>> GetCombo()
+        {
+            var result = await _clienteService.GetAll();
+            return result.Select(x => new ResponseComboViewModel { CodigoInt = x.Codigo, Descricao = x.Descricao, Id = x.Id });
         }
     }
 }

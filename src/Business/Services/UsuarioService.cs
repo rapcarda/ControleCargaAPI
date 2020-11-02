@@ -12,11 +12,14 @@ namespace Business.Services
     {
         #region [Constructor]
         private readonly IUsuarioRepository _usuarioRepository;
+        private readonly IMovimentoRepository _movimentoRepository;
 
         public UsuarioService(IUsuarioRepository usuarioRepository,
+                              IMovimentoRepository movimentoRepository,
                               INotificator notificator): base(notificator)
         {
             _usuarioRepository = usuarioRepository;
+            _movimentoRepository = movimentoRepository;
         }
         #endregion
 
@@ -40,7 +43,17 @@ namespace Business.Services
         public async Task Delete(long id)
         {
             var user = await _usuarioRepository.SearchId(id);
-            await _usuarioRepository.Delete(user);
+
+            if (user != null)
+            {
+                if (_movimentoRepository.HasMovimByUsuario(id))
+                {
+                    Notify("Excistem movimentos com este usuário. Exclusão não permitida.");
+                    return;
+                }
+
+                await _usuarioRepository.Delete(user);
+            }
         }
         #endregion
 

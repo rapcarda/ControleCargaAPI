@@ -3,12 +3,14 @@ using AutoMapper;
 using Business.Interfaces.Service;
 using Business.Interfaces.Shared;
 using Business.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace API.Controllers
 {
+    //[Authorize]
     [Route("api/[controller]")]
     public class ClientesProdutosController : BaseController
     {

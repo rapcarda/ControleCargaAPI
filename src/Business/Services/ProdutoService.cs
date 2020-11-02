@@ -4,6 +4,7 @@ using Business.Interfaces.Shared;
 using Business.Models;
 using Business.Validations;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Business.Services
@@ -46,9 +47,9 @@ namespace Business.Services
             {
                 var rel = await _clienteProdRepository.GetByProd(id);
 
-                if (rel != null)
+                if (rel.Any())
                 {
-                    Notify("Existem relacionamentos com este cliente. Exclusão não permitida.");
+                    Notify("Existem relacionamentos com este produto. Exclusão não permitida.");
                     return;
                 }
                 
