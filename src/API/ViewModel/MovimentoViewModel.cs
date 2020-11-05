@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace API.ViewModel
 {
-    public class MovimentoViewModel
+    public class MovimentoViewModel: BaseViewModel
     {
         public int UsuarioCodigo { get; set; }
         public string UsuarioNome { get; set; }

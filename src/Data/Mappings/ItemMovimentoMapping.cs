@@ -8,7 +8,7 @@ namespace Data.Mappings
     {
         public void Configure(EntityTypeBuilder<ItemMovimento> builder)
         {
-            builder.HasKey(c => new { c.MovimentoId, c.ClienteProdutoId });
+            builder.HasKey(c => c.Id);
 
             builder.Property(c => c.MovimentoId)
                 .IsRequired();

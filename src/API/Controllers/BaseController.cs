@@ -1,11 +1,13 @@
 ﻿using Business.Interfaces.Shared;
 using Business.Notifications;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Linq;
 
 namespace API.Controllers
 {
+    [Authorize]
     [ApiController]
     public class BaseController : ControllerBase
     {

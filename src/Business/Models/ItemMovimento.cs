@@ -2,7 +2,7 @@
 
 namespace Business.Models
 {
-    public class ItemMovimento
+    public class ItemMovimento: EntityBase
     {
         public long MovimentoId { get; set; }
         public virtual Movimento Movimento { get; set; }

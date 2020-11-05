@@ -2,6 +2,7 @@
 {
     public class ItemMovimentoViewModel
     {
+        public long MovimentoId { get; set; }
         public int ClienteCodigo { get; set; }
         public string ClienteDescricao { get; set; }
         public int ProdutoCodigo { get; set; }

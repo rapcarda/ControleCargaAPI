@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     public class ColetoresController : BaseController
     {
@@ -25,14 +25,12 @@ namespace API.Controllers
             _mapper = mapper;
         }
 
-        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ColetorViewModel>>> Get()
         {
             return Ok(_mapper.Map<IEnumerable<ColetorViewModel>>(await _coletorService.GetAll()));
         }
 
-        [AllowAnonymous]
         [HttpPost()]
         public async Task<ActionResult<ColetorViewModel>> Post(ColetorViewModel coletorViewModel)
         {
@@ -43,7 +41,6 @@ namespace API.Controllers
             return CustomResponse(coletorViewModel);
         }
 
-        [AllowAnonymous]
         [HttpPut("{id:long}")]
         public async Task<ActionResult<ColetorViewModel>> Put(long id, [FromBody] ColetorViewModel coletorViewModel)
         {
@@ -57,7 +54,6 @@ namespace API.Controllers
             return CustomResponse(coletorViewModel);
         }
 
-        [AllowAnonymous]
         [HttpDelete("{id:long}")]
         public async Task<ActionResult<ColetorViewModel>> Delete(long id)
         {

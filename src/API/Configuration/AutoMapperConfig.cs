@@ -33,6 +33,8 @@ namespace API.Configuration
                 .ForMember(dest => dest.ClienteDescricao, opt => opt.MapFrom(src => src.ClienteProduto.Cliente.Descricao))
                 .ForMember(dest => dest.ProdutoCodigo, opt => opt.MapFrom(src => src.ClienteProduto.Produto.Codigo))
                 .ForMember(dest => dest.ProdutoDescricao, opt => opt.MapFrom(src => src.ClienteProduto.Produto.Descricao));
+
+            CreateMap<FilterMovim, FilterMovimViewModel>().ReverseMap();
         }
     }
 }

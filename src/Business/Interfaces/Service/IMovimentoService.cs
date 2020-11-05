@@ -6,6 +6,6 @@ namespace Business.Interfaces.Service
 {
     public interface IMovimentoService: IBaseService<Movimento>
     {
-        Task<IEnumerable<Movimento>> GetMovimentoWithItem();
+        Task<IEnumerable<Movimento>> GetMovimentoWithItem(FilterMovim filter);
     }
 }

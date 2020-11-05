@@ -64,7 +64,15 @@ namespace API
 
             services.ResolveDependencies();
 
-            
+            services.Configure<IISServerOptions>(options =>
+            {
+                options.AutomaticAuthentication = false;
+            });
+
+            services.Configure<IISOptions>(options =>
+            {
+                options.ForwardClientCertificate = false;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -81,7 +89,7 @@ namespace API
                 /* Forçando ser Https. Diz para o browser que a app só fala HTTPS */
                 /* Porém, se algum externo chamar a APP sem https, então a app vai se comunicar sem https */
                 /* Por isso usa UseHttpsRedirection AppConfig, e com isso mesmo vindo sem https, ele força ser https */
-                app.UseHsts();
+                //app.UseHsts();
             }
 
             app.UseHttpsRedirection();

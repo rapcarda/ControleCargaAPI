@@ -16,9 +16,35 @@ namespace Business.Services
             _movimentoRepository = movimentoRepository;
         }
 
-        public async Task<IEnumerable<Movimento>> GetMovimentoWithItem()
+        public async Task<IEnumerable<Movimento>> GetMovimentoWithItem(FilterMovim filter)
         {
-            return await _movimentoRepository.GetMovimentoWithItem();
+            if (!IsFilterValid(filter))
+                return null;
+
+            return await _movimentoRepository.GetMovimentoWithItem(filter);
+        }
+
+        private bool IsFilterValid(FilterMovim filter)
+        {
+            if (filter.DataHoraInicial == null)
+            {
+                Notify("Data inicial do filtro inválida.");
+                return false;
+            }
+
+            if (filter.DataHoraFinal == null)
+            {
+                Notify("Data final do filtro inválida.");
+                return false;
+            }
+
+            if (filter.DataHoraFinal < filter.DataHoraInicial)
+            {
+                Notify("Data final do filtro menor que data inicial.");
+                return false;
+            }
+
+            return true;
         }
     }
 }

@@ -36,6 +36,7 @@ namespace Data.Mappings
                 .HasColumnType("datetime");
 
             builder.Property(p => p.DataHoraInicial)
+                .IsRequired()
                 .HasColumnName("Data_Hora_Inicial")
                 .HasColumnType("datetime");
 

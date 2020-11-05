@@ -21,7 +21,7 @@ namespace Business.Models
         [Column("Data_Hora_Gravacao")]
         public DateTime? DataHoraGravacao { get; set; }
         [Column("Data_Hora_Inicial")]
-        public DateTime? DataHoraInicial { get; set; }
+        public DateTime DataHoraInicial { get; set; }
         [Column("Data_Hora_Final")]
         public DateTime? DataHoraFinal { get; set; }
         public string Obs { get; set; }

@@ -6,7 +6,7 @@ namespace Business.Interfaces.Repository
 {
     public interface IMovimentoRepository: IBaseRepository<Movimento>
     {
-        Task<IEnumerable<Movimento>> GetMovimentoWithItem();
+        Task<IEnumerable<Movimento>> GetMovimentoWithItem(FilterMovim filter);
         bool HasMovimByColetor(long coletorId);
         bool HasMovimByFrota(long frotaId);
         bool HasMovimByUsuario(long usuarioId);
