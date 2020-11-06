@@ -40,15 +40,23 @@ namespace API.Controllers
             if (!ModelState.IsValid)
                 return CustomResponse(ModelState);
 
-            var user = await _usuarioService.FindUserByLoginAndPassword(loginUser.Login, loginUser.Password);
-            
-            if (user == null)
+            try
             {
-                NotifyError("Nenhum usuário encontrado com este login/senha");
-                return CustomResponse(loginUser);
-            }
+                var user = await _usuarioService.FindUserByLoginAndPassword(loginUser.Login, loginUser.Password);
 
-            return CustomResponse(await GerarJwt(user));
+                if (user == null)
+                {
+                    NotifyError("Nenhum usuário encontrado com este login/senha");
+                    return CustomResponse(loginUser);
+                }
+
+                return CustomResponse(await GerarJwt(user));
+            } 
+            catch (Exception ex)
+            {
+                NotifyError($"Erro login. Error: {ex.Message}");
+                return CustomResponse();
+            } 
         }
 
         private async Task<LoginResponseViewModel> GerarJwt(Usuario user)

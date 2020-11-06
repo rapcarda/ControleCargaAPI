@@ -1,0 +1,9 @@
+C:\Particular\Projetos\ControleCargas\API\ControleCarga\src\Business\bin\Release\netcoreapp3.1\Business.deps.json
+C:\Particular\Projetos\ControleCargas\API\ControleCarga\src\Business\bin\Release\netcoreapp3.1\Business.dll
+C:\Particular\Projetos\ControleCargas\API\ControleCarga\src\Business\bin\Release\netcoreapp3.1\Business.pdb
+C:\Particular\Projetos\ControleCargas\API\ControleCarga\src\Business\obj\Release\netcoreapp3.1\Business.csprojAssemblyReference.cache
+C:\Particular\Projetos\ControleCargas\API\ControleCarga\src\Business\obj\Release\netcoreapp3.1\Business.AssemblyInfoInputs.cache
+C:\Particular\Projetos\ControleCargas\API\ControleCarga\src\Business\obj\Release\netcoreapp3.1\Business.AssemblyInfo.cs
+C:\Particular\Projetos\ControleCargas\API\ControleCarga\src\Business\obj\Release\netcoreapp3.1\Business.csproj.CoreCompileInputs.cache
+C:\Particular\Projetos\ControleCargas\API\ControleCarga\src\Business\obj\Release\netcoreapp3.1\Business.dll
+C:\Particular\Projetos\ControleCargas\API\ControleCarga\src\Business\obj\Release\netcoreapp3.1\Business.pdb

@@ -51,7 +51,18 @@ namespace API
                     .AllowAnyMethod()
                     .AllowAnyHeader());
 
-                /* Adicionou uma politica de CORS, para acesso externo na APP, para produção */
+                options.AddPolicy("Production",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
+
+                //options.AddPolicy("Production",
+                //    builder => builder.AllowAnyOrigin()
+                //    .AllowAnyMethod()
+                //    .WithOrigins("http://localhost/") //somente este site pode fazer get na app
+                //    .SetIsOriginAllowedToAllowWildcardSubdomains());
+
+                /* Adicionou uma politica de CORS, para acesso externo na API, para produção */
                 //options.AddPolicy("Production",
                 //    builder => builder
                 //    .WithMethods("GET")
